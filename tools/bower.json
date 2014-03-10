@@ -1,0 +1,12 @@
+{
+	"name": "html-boilerplate"
+	,"version": "0.0.1"
+	,"dependencies": {
+		"tmclasses": "https://github.com/tobymackenzie/js-tmclasses.git"
+		,"tmlib": "https://github.com/tobymackenzie/Web-ClientBehavior.git"
+	}
+	,"devDependencies": {
+		"requirejs": "~2.1.8"
+	}
+	,"directory": "../web/_/lib"
+}

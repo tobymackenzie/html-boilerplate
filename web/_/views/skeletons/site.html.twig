@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html id="page-{{page.name}}" lang="{{page.lang}}" class="html page-{{page.name}}">{# 'html' class for generically increasing css specifity.  'page-' for page specific styling #}
+	<head>
+		<meta charset="{{page.charset}}" />
+
+		<title>{{(page.title) ? page.title + ' - ' : ''}} - {{site.title}}</title>
+
+		{% if page.description %}<meta content="{{page.description}}" name="description" />{% endif %}
+		{% if page.keywords %}<meta content="{{page.keywords}}" name="keywords" />{% endif %}
+		{% if site.isResponsive %}<meta content="initial-scale=1,width=device-width" name="viewport" />{% endif %}
+
+		{{page.styles}}
+		<link href="/_/styles/{{app.environment}}/main.css" rel="stylesheet" />
+
+		{# shiv for older IE browsers to support HTML5 elements #}
+		<!--[if lt IE 9]><script src="/_/scripts/lib/html5shiv.js"></script><![endif]-->
+		{# require for script loading / dependency management #}
+		<script src="/_/scripts/lib/require.js"></script>
+		<script><!--
+			//{# stick class name onto html denoting js support. -@<http://www.paulirish.com/2009/avoiding-the-fouc-v3/> #}
+			document.getElementsByTagName('html')[0].className += ' ua-js';
+			with(document.documentElement){className=className.replace(/\bno-js\b/,'js')};
+			(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);
+			//{# tell js what environment we're in #}
+			window.ENV = '{{app.environment}}';
+			//{# load main script file #}
+			require(['/_/scripts/{{(app.environment is 'dev') ? 'src' : 'prod'}}/main.js']);
+		//--></script>
+	</head>
+	<body class="body" id="body">{# class and id for generically increasing CSS specifity #}
+		<div class="siteWrap">{# wrapper to hold normal page content and allow up to three levels of styling around it #}
+			<div class="siteHeaderWrap"><header class="siteHeader" role="banner">{# wrap some block level HTML5 elements in a div to ensure blockedness in old browser #}{# have ARIA roles to support older screenreaders #}
+				<div class="siteJumpActions"><a class="jumpAction" href="#siteContent">Jump to main content</a></div>{# skip link #}
+				<div class="siteLogo">{% if page.name is not 'home' %}<a class="siteLogoAction" href="/">{% endif %}{{site.name}}{% if page.name is not 'home' %}</a>{% endif %}</div>{# logo is link on non-home pages #}
+				<div class="siteNavWrap"><nav class="siteNav" role="navigation">
+					<h2 class="sro">Site Navigation</h2>
+					<ul class="siteNavList navList l-1">
+{% for item in site.nav %}
+						<li class="navItem l-1">
+							<a class="navAction l-1" href="{{item.url}}">{{item.name}}</a>
+{%	if item.subNav %}
+							<div class="subNavWrap">
+								<ul class="navList l-2">
+{%		for subItem in item.subNav %}
+									<li class="navItem l-2">
+										<a class="navAction l-2" href="{{subItem.url}}">{{subItem.name}}</a>
+									</li>
+{%		endfor %}
+								</ul>
+							</div>
+{%	endif %}
+						</li>
+{% endfor %}
+					</ul>
+				</nav></div>
+				<h2 class="sro">nav</h2>
+			</header></div>
+			<div class="siteMainWrap">
+				<div class="siteContentWrap"><main id="siteContent" class="siteContent" role="main">
+					<h1>{{page.name}}</h1>
+					{{page.content}}
+				</main></div>
+				<div class="siteAsideWrap"><aside class="siteAside" role="complementary">
+					<h2 class="sro">Sidebar</h2>
+					{{page.aside}}
+				</aside></div>
+			</div>
+			<div class="siteFooterWrap"><footer class="siteFooter" role="contentinfo">
+				<h2 class="sro">Footer</h2>
+				<div class="siteInfo">
+					<h3 class="sro">Site Info</h3>
+					<span class="siteCopyright">© 2014{% if date('Y') > 2014 %} - {{date('Y')}}{% endif %} {{site.name}}.</span>
+					<span class="siteAuthors"><a href="{{app.devUrl}}">Developed by {{app.devName}}</a>.</span>
+				</div>
+			</footer></div>
+		</div>
+	</body>
+</html>

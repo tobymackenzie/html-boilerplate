@@ -1,0 +1,138 @@
+/* global console, module, require */
+module.exports = function(__grunt){
+	//--show run time
+	require('time-grunt')(__grunt);
+
+	//--autoload grunt tasks package.json
+	require('load-grunt-tasks')(__grunt);
+
+	//--path configuration
+	var __paths = {
+		tools: '.'
+		,webRoot: '../web'
+	};
+	__paths.assets = __paths.webRoot + '/_';
+	__paths.styles = __paths.assets + '/styles';
+	__paths.stylesSrc = __paths.styles + '/src';
+	__paths.stylesDev = __paths.styles + '/dev';
+	__paths.stylesProd = __paths.styles + '/prod';
+	__paths.scripts = __paths.assets + '/scripts';
+	__paths.scriptsSrc = __paths.scripts + '/src';
+	__paths.scriptsProd = __paths.scripts + '/prod';
+
+	//--grunt config
+	__grunt.initConfig({
+		compass: {
+			dev: {
+				options: {
+					basePath: __paths.tools
+					,config: __paths.tools + '/config.rb'
+				}
+			}
+			,watch: {
+				options: {
+					basePath: __paths.tools
+					,config: __paths.tools + '/config.rb'
+					,watch: true
+				}
+			}
+		}
+		,copy: {
+			'css-prod': {
+				cwd: __paths.stylesDev
+				,expand: true
+				,src: '**'
+				// ,src: __paths.stylesDev + '/**'
+				,dest: __paths.stylesProd + '/'
+				// ,dest: '../prod'
+			}
+		}
+		,jshint: {
+			options: {
+				jshintrc: '.jshintrc'
+			}
+			,all: [
+				'Gruntfile.js'
+				,__paths.scriptsSrc
+			]
+		}
+		,requirejs: {
+			require: {
+				options: {
+					baseUrl: __paths.scriptsSrc
+					,include: 'main'
+					,mainConfigFile: __paths.scriptsSrc + '/main.js'
+					,optimize: 'uglify2'
+					,out: __paths.scriptsProd + '/main.js'
+					,paths: {
+						jquery: 'empty:'
+					}
+					,wrap: {
+						startFile: 'assets/scripts/wrap.start.js'
+						,endFile: 'assets/scripts/wrap.end.js'
+					}
+					,wrapShim: true
+				}
+			}
+		}
+	});
+
+	//--tasks
+	/*---
+	convenient configuration map of all tasks to register
+	key is name of task
+	value is either a map or an array of tasks or a function to run
+		Map: can have two keys, 'value' and 'description'.  'description' is optional description of task.  'value' is either an array of tasks or a function to run
+		Something Else: will be used as the 'value' equivalent of the map
+	*/
+	var __tasks = {
+		'default': function(){
+			console.log('available commands:\n', Object.keys(__tasks).toString().replace(/,/g, ', '));
+		}
+		,'all': {
+			description: 'Run hinting and, if succesful, build css and js for production'
+			,value: [
+				'hint'
+				,'build:prod'
+			]
+		}
+		,'build:css': [
+			'compass:dev'
+		]
+		,'build:css:prod': [
+			'build:css'
+			,'copy:css-prod'
+		]
+		,'build:js': [
+			'requirejs:require'
+		]
+		,'build:js:prod': [
+			'build:js'
+		]
+		,'build:prod': [
+			'build:css:prod'
+			,'build:js:prod'
+		]
+		,'hint': [
+			'jshint'
+		]
+	};
+	//---loop through all tasks, registering each
+	var _item;
+	for(var _key in __tasks){
+		if(__tasks.hasOwnProperty(_key)){
+			//--items are objects or are converted to them
+			_item = __tasks[_key];
+			if(_item instanceof Array || typeof _item === 'function'){
+				_item = {
+					value: _item
+				};
+			}
+			if(_item.description){
+				__grunt.registerTask(_key, _item.description, _item.value);
+			}else{
+				__grunt.registerTask(_key, _item.value);
+			}
+		}
+	}
+};

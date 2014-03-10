@@ -1,0 +1,61 @@
+//==mixins
+%block{
+	margin: 0 0 15px; margin: 0 0 1.5rem;
+	padding: 0;
+}
+%responsive{
+	height: auto; //-# override height attribute for responsive images
+	max-width: 100%; //-# make elements responsive, will scale down with container
+}
+
+//==elements
+*{
+	@include box-sizing(border-box);
+}
+a{
+	margin: 0;
+	// &:focus,&:hover{}
+}
+body,td,th{
+	line-height: 1.45;
+}
+// a:focus,a:hover{}
+h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6{
+	@extend %block;
+	a{
+		color: inherit;
+	}
+
+}
+html{
+	font-size: 62.5%; //-# sets document base font size to 10px with browser defaults, making one rem equal 10 px for easier rem math
+}
+iframe, object{
+	@extend %responsive;
+	border: none;
+}
+img{
+	@extend %responsive;
+	border: 0; //-# ensure images in links don't get borders in some browsers
+}
+input, select, td, textarea, th{
+	font-size: 1em;
+}
+input, select, textarea{
+	@extend %responsive;
+}
+p{
+	@extend %block;
+}
+table{
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+table
+,td
+,th
+,tr
+{
+	margin: 0;
+	padding: 0;
+}

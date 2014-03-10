@@ -1,0 +1,39 @@
+#=====
+# .htaccess for apache.  do equivalent settings for other servers
+# This stuff generally should be moved to server configuration files for performance reasons if possible, as .htaccess must be processed on for each request and looked for in each directory.  See <http://httpd.apache.org/docs/current/howto/htaccess.html#when> for more details.
+# See <https://github.com/h5bp/html5-boilerplate/blob/master/.htaccess> for more ideas
+#=====
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+
+	#==prevent access to forbidden files
+	#===dot files
+	#-@ HTML5 Boilerplate: https://github.com/h5bp/html5-boilerplate/blob/master/.htaccess#L344
+	RewriteCond %{SCRIPT_FILENAME} -f [OR]
+	RewriteCond %{SCRIPT_FILENAME} -d
+	RewriteRule "(^|/)\." - [F]
+
+	#==enable if using a file to route requests
+	# RewriteCond %{REQUEST_FILENAME} !-f
+	# RewriteCond %{REQUEST_FILENAME} !-d
+	# RewriteRule ^(.*)$ router.php [QSA,L]
+</IfModule>
+
+#==allow following of symlinks
+Options +FollowSymlinks
+
+#==tell IE to use latest rendering engine
+#-@ HTML5 Boilerplate: https://github.com/h5bp/html5-boilerplate/blob/master/.htaccess#L88
+<IfModule mod_headers.c>
+	Header set X-UA-Compatible "IE=edge"
+	# `mod_headers` can't match based on the content-type, however, we only
+	# want to send this header for HTML pages and not for the other resources
+	<FilesMatch "\.(appcache|crx|css|cur|eot|gif|htc|ico|jpe?g|js|m4a|m4v|manifest|mp4|oex|oga|ogg|ogv|opus|otf|pdf|png|safariextz|svgz?|ttf|vcf|webapp|webm|webp|woff|xml|xpi)$">
+		Header unset X-UA-Compatible
+	</FilesMatch>
+</IfModule>
+
+#==compress appropriate files
+<IfModule mod_deflate.c>
+	AddOutputFilterByType DEFLATE application/javascript text/css text/html text/javascript text/plain text/xml
+</IfModule>
