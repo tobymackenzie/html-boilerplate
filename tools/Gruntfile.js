@@ -22,7 +22,15 @@ module.exports = function(__grunt){
 
 	//--grunt config
 	__grunt.initConfig({
-		compass: {
+		autoprefixer: {
+			options: {
+				browsers: ['last 4 versions', '> 1%', 'ie >= 7', 'ff >= 3']
+			}
+			,files: {
+				src: __paths.stylesDev + '/**/*.css'
+			}
+		}
+		,compass: {
 			dev: {
 				options: {
 					basePath: __paths.tools
@@ -98,6 +106,7 @@ module.exports = function(__grunt){
 		}
 		,'build:css': [
 			'compass:dev'
+			,'autoprefixer'
 		]
 		,'build:css:prod': [
 			'build:css'

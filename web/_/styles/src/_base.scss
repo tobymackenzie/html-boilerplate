@@ -10,7 +10,7 @@
 
 //==elements
 *{
-	@include box-sizing(border-box);
+	box-sizing: border-box;
 }
 a{
 	margin: 0;
