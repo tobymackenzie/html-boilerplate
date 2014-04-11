@@ -23,11 +23,17 @@ module.exports = function(__grunt){
 	//--grunt config
 	__grunt.initConfig({
 		autoprefixer: {
-			options: {
-				browsers: ['last 4 versions', '> 1%', 'ie >= 7', 'ff >= 3']
+			dev: {
+				options: {
+					browsers: ['last 4 versions', '> 1%', 'ie >= 7', 'ff >= 3']
+				}
+				,src: __paths.stylesDev + '/**/*.css'
 			}
-			,files: {
-				src: __paths.stylesDev + '/**/*.css'
+			,prod: {
+				options: {
+					browsers: ['last 4 versions', '> 1%', 'ie >= 7', 'ff >= 3']
+				}
+				,src: __paths.stylesProd + '/**/*.css'
 			}
 		}
 		,compass: {
@@ -37,22 +43,20 @@ module.exports = function(__grunt){
 					,config: __paths.tools + '/config.rb'
 				}
 			}
+			,prod: {
+				options: {
+					basePath: __paths.tools
+					,config: __paths.tools + '/config.rb'
+					,cssDir: __paths.stylesProd
+					,outputStyle: 'compressed'
+				}
+			}
 			,watch: {
 				options: {
 					basePath: __paths.tools
 					,config: __paths.tools + '/config.rb'
 					,watch: true
 				}
-			}
-		}
-		,copy: {
-			'css-prod': {
-				cwd: __paths.stylesDev
-				,expand: true
-				,src: '**'
-				// ,src: __paths.stylesDev + '/**'
-				,dest: __paths.stylesProd + '/'
-				// ,dest: '../prod'
 			}
 		}
 		,jshint: {
@@ -105,18 +109,22 @@ module.exports = function(__grunt){
 			]
 		}
 		,'build:css': [
+			'build:css:dev'
+		]
+		,'build:css:dev': [
 			'compass:dev'
-			,'autoprefixer'
+			,'autoprefixer:dev'
 		]
 		,'build:css:prod': [
-			'build:css'
-			,'copy:css-prod'
+			'compass:prod'
+			,'autoprefixer:prod'
 		]
 		,'build:js': [
 			'requirejs:require'
 		]
 		,'build:js:prod': [
-			'build:js'
+			'jshint'
+			,'build:js'
 		]
 		,'build:prod': [
 			'build:css:prod'
