@@ -1,4 +1,5 @@
 #==dependencies
+require 'sass-css-importer'
 require 'sass-globbing'
 
 #==paths
