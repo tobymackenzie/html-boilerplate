@@ -8,6 +8,17 @@
 	max-width: 100%; //-# make elements responsive, will scale down with container
 }
 
+//==base
+body, td, th{
+	@extend %font-base;
+	@extend %fontsize-base;
+	color: $color-baseText;
+	line-height: 1.45;
+}
+html{
+	background: $color-baseBG;
+}
+
 //==elements
 *{
 	box-sizing: border-box;
@@ -16,16 +27,30 @@ a{
 	margin: 0;
 	// &:focus,&:hover{}
 }
-body,td,th{
-	line-height: 1.45;
-}
 // a:focus,a:hover{}
 h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6{
 	@extend %block;
 	a{
 		color: inherit;
 	}
-
+}
+h1,.h1{
+	@include fontSize($fontsize-h1);
+}
+h2,.h2{
+	@include fontSize($fontsize-h2);
+}
+h3,.h3{
+	@include fontSize($fontsize-h3);
+}
+h4,.h4{
+	@include fontSize($fontsize-h4);
+}
+h5,.h5{
+	@include fontSize($fontsize-h5);
+}
+h6,.h6{
+	@include fontSize($fontsize-h6);
 }
 html{
 	font-size: 62.5%; //-# sets document base font size to 10px with browser defaults, making one rem equal 10 px for easier rem math

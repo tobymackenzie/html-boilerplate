@@ -1,0 +1,28 @@
+//=====
+//==fonts
+//=====
+$font-helvetica: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+
+//==elms/modules
+$font-base: $font-helvetica;
+%font-base{
+	font-family: $font-base;
+}
+$font-heading: $font-helvetica;
+%font-heading{
+	font-family: $font-heading;
+}
+
+//=====
+//==sizes
+//=====
+$fontsize-base: 16;
+%fontsize-base{
+	@include fontSize($fontsize-base);
+}
+$fontsize-h1: 2em;
+$fontsize-h2: 1.5em;
+$fontsize-h3: 1.17em;
+$fontsize-h4: 1.00em;
+$fontsize-h5: 0.83em;
+$fontsize-h6: 0.67em;
