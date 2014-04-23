@@ -51,13 +51,6 @@ module.exports = function(__grunt){
 					,outputStyle: 'compressed'
 				}
 			}
-			,watch: {
-				options: {
-					basePath: __paths.tools
-					,config: __paths.tools + '/config.rb'
-					,watch: true
-				}
-			}
 		}
 		,jshint: {
 			options: {
@@ -85,6 +78,26 @@ module.exports = function(__grunt){
 					}
 					,wrapShim: true
 				}
+			}
+		}
+		,watch: {
+			css: {
+				files: __paths.stylesSrc + '/**/*.scss'
+				,tasks: ['build:css:dev']
+			}
+			,js: {
+				files: __paths.scriptsSrc + '/**/*.js'
+				,tasks: ['jshint', 'build:js']
+			}
+			,prod: {
+				files: [
+					__paths.scriptsSrc
+					,__paths.stylesSrc
+				]
+				,tasks: [
+					'build:css:prod'
+					,'build:js:prod'
+				]
 			}
 		}
 	});
