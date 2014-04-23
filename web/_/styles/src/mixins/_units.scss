@@ -1,6 +1,6 @@
 /*
 Variable: fontsize-root
-Font size on root (html) element.  Browser default is 16px.  We set it to 62.5%, making it 10px if user hasn't changed font size.  Used to determine sizes for remFallback function.
+'px' font size on root (html) element (with units removed).  Browser default is 16px.  We set it to 62.5%, making it 10px if user hasn't changed font size.  Used to determine sizes for remFallback function.
 
 -@ based on http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
 */
