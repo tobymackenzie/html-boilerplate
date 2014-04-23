@@ -5,3 +5,6 @@
 /tools/Gemfile.lock
 /tools/node_modules
 /web/_/lib
+/web/_/scripts/prod
+/web/_/styles/dev
+/web/_/styles/prod
