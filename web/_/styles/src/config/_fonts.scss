@@ -26,3 +26,4 @@ $fontsize-h3: 1.17em;
 $fontsize-h4: 1.00em;
 $fontsize-h5: 0.83em;
 $fontsize-h6: 0.67em;
+$fontsize-root: 10; //-# Root font size for use by `remFallback` mixin. Based on setting font size to 62.5% on the 'html' element, making it 10px if user hasn't changed font size, but it will adjust with users font setting
