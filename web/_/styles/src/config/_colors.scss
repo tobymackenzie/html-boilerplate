@@ -15,7 +15,11 @@ Colors that will be defined directly and used in other files.  Used for classes 
 /*=====
 ==modules
 
-Colors named for what they will be styling.  These are to be used in other files.
+Colors named for what they will be styling.  These are to be used in other files.  Do not define colors directly here, unless they are placeholders with UA defaults.
 =====*/
 $color-baseBG: $color-white;
 $color-baseText: $color-black;
+
+$color-heading: $color-baseText;
+$color-link: #0066cc;
+$color-linkFocus: $color-link;
