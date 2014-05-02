@@ -1,0 +1,21 @@
+//==extendable modules
+//--blocks
+%block{
+	@include remFallback(margin, 0 0 15);
+	padding: 0;
+}
+%responsive{
+	height: auto; //-# override height attribute for responsive images
+	max-width: 100%; //-# make elements responsive, will scale down with container
+}
+
+//--fonts
+%font-base{
+	font-family: $font-base;
+}
+%font-heading{
+	font-family: $font-heading;
+}
+%fontsize-base{
+	@include fontSize($fontsize-base);
+}
