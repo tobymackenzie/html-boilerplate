@@ -1,4 +1,4 @@
-//==base styles
+//==root styles
 body, td, th{
 	@extend %font-base;
 	@extend %fontsize-base;
@@ -7,6 +7,7 @@ body, td, th{
 }
 html{
 	background: $color-baseBG;
+	font-size: 62.5%; //-# sets document base font size to 10px with browser defaults, making one rem equal 10 px for easier rem math.  Will automatically scale with user configured default font size.
 }
 
 //==element modules
@@ -44,9 +45,6 @@ h5,.h5{
 }
 h6,.h6{
 	@include fontSize($fontsize-h6);
-}
-html{
-	font-size: 62.5%; //-# sets document base font size to 10px with browser defaults, making one rem equal 10 px for easier rem math
 }
 iframe, object{
 	@extend %responsive;
