@@ -1,14 +1,47 @@
-//-#file to load all styles files in proper order
+/*
+main.scss
+Represents basic CSS output file, importing all others that will be used on the site in the normal case.  Other output files with other requirements will have a similar representative that loads files necessary for its purposes.
+*/
 
-//==library dependencies
-//-#load library dependencies so they are available to all files.  when 'once' functionality is implemented, this can move to individual files as needed
+//-# following comment to help prevent editing of generated CSS
+/*!
+*
+* 'main.css' is generated from SCSS source files.  Don't edit directly or your changes will be overwritten.
+*
+*/
 
-//==config
+/*=====
+==config
 
-//==styles
-@import 'mixins/**/*';
+Load config files first so they are available to other files, including libary files.
+=====*/
 @import 'config/**/*';
-@import '_breakpoints';
-@import 'modules/**/*';
+
+/*=====
+==library dependencies
+
+Load library dependencies so they are available to other files.  when 'once' functionality is implemented, this can move to individual files as needed
+=====*/
+
+/*=====
+==mixins
+
+Load mixins before styles so they are available to all styles.
+
+These mixins shouldn't be used by any library files and can't be used by config files.  Could move before them if you need mixins for configuration and don't need to configure the mixins.
+=====*/
+@import 'mixins/**/*';
+
+/*=====
+==styles
+
+These files generate actual styles.  They will have everything they need loaded from above.  Load in an order that avoids specifity problems.
+
+Lib files could also generate styles.  If there are concerns about specifity problems due to order, consider loading libs down here.
+=====*/
 @import '_base';
+@import 'modules/**/*';
 @import 'skeleton/**/*';
+@import 'sections/**/*';
+@import 'pages/**/*';
+

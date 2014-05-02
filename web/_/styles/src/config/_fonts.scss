@@ -1,25 +1,21 @@
-//=====
-//==fonts
-//=====
+/*=====
+==fonts
+
+Define font stacks in the 'stacks' section, then create variables named for where they will be used that are set to appropriate stacks in the 'modules' section.  Don't use the 'stacks' variables directly.
+=====*/
+//==stacks
 $font-helvetica: 'Helvetica Neue', Arial, Helvetica, sans-serif;
 
-//==elms/modules
+//==modules
 $font-base: $font-helvetica;
-%font-base{
-	font-family: $font-base;
-}
 $font-heading: $font-helvetica;
-%font-heading{
-	font-family: $font-heading;
-}
 
-//=====
-//==sizes
-//=====
+/*=====
+==sizes
+
+Font sizes, named for where they will be used.
+=====*/
 $fontsize-base: 16;
-%fontsize-base{
-	@include fontSize($fontsize-base);
-}
 $fontsize-h1: 2em;
 $fontsize-h2: 1.5em;
 $fontsize-h3: 1.17em;

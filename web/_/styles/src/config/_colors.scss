@@ -1,9 +1,21 @@
-//==base colors
+/*=====
+==base colors
+
+Colors to be used in the modules section. None of these colors should be directly used in other files.
+*/
 $color-black: #000000;
 $color-white: #ffffff;
 
-//==direct user colors
+/*=====
+==direct use colors
 
-//==elms/modules
+Colors that will be defined directly and used in other files.  Used for classes with color names, such as when a color name is selectable in a CMS that causes a color-name class to be used in generated content.
+*/
+
+/*=====
+==modules
+
+Colors named for what they will be styling.  These are to be used in other files.
+=====*/
 $color-baseBG: $color-white;
 $color-baseText: $color-black;

@@ -1,4 +1,5 @@
-//==mixins
+//==extendable modules
+//--blocks
 %block{
 	@include remFallback(margin, 0 0 15);
 	padding: 0;
@@ -8,7 +9,18 @@
 	max-width: 100%; //-# make elements responsive, will scale down with container
 }
 
-//==base
+//--fonts
+%font-base{
+	font-family: $font-base;
+}
+%font-heading{
+	font-family: $font-heading;
+}
+%fontsize-base{
+	@include fontSize($fontsize-base);
+}
+
+//==base styles
 body, td, th{
 	@extend %font-base;
 	@extend %fontsize-base;
@@ -19,7 +31,7 @@ html{
 	background: $color-baseBG;
 }
 
-//==elements
+//==element modules
 *{
 	box-sizing: border-box;
 }

@@ -7,7 +7,7 @@ Variable: fontsize-root
 $fontsize-root: 16 !default;
 
 /*
-Function: remFallback
+Mixin: remFallback
 Output a property with pixel values for non 'rem' supporting browsers followed by the 'rem' equivalent for rem support browsers.  Can't currently accept values with comma separation, like multiple backgrounds or the like.
 
 -@ based on http://hugogiraudel.com/2013/03/18/ultimate-rem-mixin/
@@ -59,7 +59,7 @@ Output a property with pixel values for non 'rem' supporting browsers followed b
 }
 
 /*
-Function: stripUnit
+Mixin: stripUnit
 Strip the unit from a value that has a unit
 
 -@ based on http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
