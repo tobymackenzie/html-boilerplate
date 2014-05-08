@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html id="page-{{page.name}}" lang="{{page.lang}}" class="html page-{{page.name}}">{# 'html' class for generically increasing css specifity.  'page-' for page specific styling #}
+<html id="page-{{page.name}}" lang="{{page.lang}}" class="html page-{{page.name}} ua-no-js">{# 'html' class for generically increasing css specifity.  'page-' for page specific styling #}
 	<head>
 		<meta charset="{{page.charset}}" />
 
@@ -12,15 +12,15 @@
 		{{page.styles}}
 		<link href="/_/styles/{{app.environment}}/main.css" rel="stylesheet" />
 
+		<script><!--
+			//{# stick class name onto html denoting js support. -@<http://www.paulirish.com/2009/avoiding-the-fouc-v3/> #}
+			(function(H){H.className=H.className.replace(/\bua-no-js\b/,'ua-js')})(document.documentElement);
+		--></script>
 		{# shiv for older IE browsers to support HTML5 elements #}
 		<!--[if lt IE 9]><script src="/_/scripts/lib/html5shiv.js"></script><![endif]-->
 		{# require for script loading / dependency management #}
 		<script src="/_/scripts/lib/require.js"></script>
 		<script><!--
-			//{# stick class name onto html denoting js support. -@<http://www.paulirish.com/2009/avoiding-the-fouc-v3/> #}
-			document.getElementsByTagName('html')[0].className += ' ua-js';
-			with(document.documentElement){className=className.replace(/\bno-js\b/,'js')};
-			(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);
 			//{# tell js what environment we're in #}
 			window.ENV = '{{app.environment}}';
 			//{# load main script file #}
