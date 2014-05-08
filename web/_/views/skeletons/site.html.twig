@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html id="page-{{page.name}}" lang="{{page.lang}}" class="html page-{{page.name}} ua-no-js">{# 'html' class for generically increasing css specifity.  'page-' for page specific styling #}
+<html id="page-{{page.name}}" lang="{{page.lang}}" class="html page-{{page.name}} ua-no-js">{#
+	'html' class for generically increasing css specifity.
+	'page-' for page specific styling.
+	'ua-no-js' for styling for browsers that don't have JavaScript.  Will be replaced with 'ua-js' if browse supports JavaScript
+#}
 	<head>
 		<meta charset="{{page.charset}}" />
 
