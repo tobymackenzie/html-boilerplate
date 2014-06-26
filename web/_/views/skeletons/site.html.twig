@@ -2,7 +2,7 @@
 <html id="page-{{page.name}}" lang="{{page.lang}}" class="html page-{{page.name}} ua-no-js">{#
 	'html' class for generically increasing css specifity.
 	'page-' for page specific styling.
-	'ua-no-js' for styling for browsers that don't have JavaScript.  Will be replaced with 'ua-js' if browse supports JavaScript
+	'ua-no-js' for styling for user agents that don't have JavaScript.  Will be replaced with 'ua-js' if user agents supports JavaScript
 #}
 	<head>
 		<meta charset="{{page.charset}}" />
@@ -33,7 +33,7 @@
 	</head>
 	<body class="body" id="body">{# class and id for generically increasing CSS specifity #}
 		<div class="siteWrap">{# wrapper to hold normal page content and allow up to three levels of styling around it #}
-			<div class="siteHeaderWrap"><header class="siteHeader" role="banner">{# wrap some block level HTML5 elements in a div to ensure blockedness in old browser #}{# have ARIA roles to support older screenreaders #}
+			<div class="siteHeaderWrap"><header class="siteHeader" role="banner">{# wrap some block level HTML5 elements in a div to ensure blockedness in old browsers #}{# have ARIA roles to support older screenreaders #}
 				<div class="siteJumpActions"><a class="jumpAction" href="#siteContent">Jump to main content</a></div>{# skip link #}
 				<div class="siteLogo">{% if page.name is not 'home' %}<a class="siteLogoAction" href="/">{% endif %}{{site.name}}{% if page.name is not 'home' %}</a>{% endif %}</div>{# logo is link on non-home pages #}
 				<div class="siteNavWrap"><nav class="siteNav" role="navigation">
