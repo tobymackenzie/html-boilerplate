@@ -5,11 +5,11 @@ An html project boilerplate not currently meant for direct use but more of for e
 
 - tools: tools for working on the site, including for initial setup and for preprocessing/building the assets of the site
 	- init.js: run this first to install project dependencies with npm, bundler, and bower.
-	- Gruntfile.js: contains grunt tasks for building scss files to css with Compass and require.js modules to production js with r.js.
+	- Gruntfile.js: contains grunt tasks for building scss files to css with Sass and require.js modules to production js with r.js.
 		- build:js does the js build for prod environment.  The dev environment requires no build
 		- build:css does the css build for dev environment
 		- build:css:prod does the css build for prod environment
-		- compass:watch does the equivalent of build:css every time a source file is changed
+		- watch:css does the equivalent of build:css every time a source file is changed
 		- hint runs jshint on the js files
 	- src/CommandRunner: a helper for running shell commands
 	- assets: js used in the build process

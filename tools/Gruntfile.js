@@ -36,19 +36,34 @@ module.exports = function(__grunt){
 				,src: __paths.stylesProd + '/**/*.css'
 			}
 		}
-		,compass: {
-			dev: {
-				options: {
-					basePath: __paths.tools
-					,config: __paths.tools + '/config.rb'
+		,sass: {
+			options: {
+				require: ['sass-css-importer', 'sass-globbing']
+				,unixNewlines: true
+			}
+			,dev: {
+				files: [{
+					cwd: __paths.stylesSrc
+					,dest: __paths.stylesDev
+					,expand: true
+					,ext: '.css'
+					,src: ['**/*.scss']
+				}]
+				,options: {
+					lineNumbers: true
+					,style: 'nested'
 				}
 			}
 			,prod: {
-				options: {
-					basePath: __paths.tools
-					,config: __paths.tools + '/config.rb'
-					,cssDir: __paths.stylesProd
-					,outputStyle: 'compressed'
+				files: [{
+					cwd: __paths.stylesSrc
+					,dest: __paths.stylesProd
+					,expand: true
+					,ext: '.css'
+					,src: ['**/*.scss']
+				}]
+				,options: {
+					style: 'compressed'
 				}
 			}
 		}
@@ -125,11 +140,11 @@ module.exports = function(__grunt){
 			'build:css:dev'
 		]
 		,'build:css:dev': [
-			'compass:dev'
+			'sass:dev'
 			,'autoprefixer:dev'
 		]
 		,'build:css:prod': [
-			'compass:prod'
+			'sass:prod'
 			,'autoprefixer:prod'
 		]
 		,'build:js': [
@@ -145,6 +160,10 @@ module.exports = function(__grunt){
 		]
 		,'hint': [
 			'jshint'
+		]
+		,'watch:dev': [
+			'watch:css'
+			,'watch:js'
 		]
 	};
 	//---loop through all tasks, registering each
