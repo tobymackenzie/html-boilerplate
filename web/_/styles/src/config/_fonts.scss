@@ -1,25 +1,33 @@
 /*=====
 ==fonts
 
-Define font stacks in the 'stacks' section, then create variables named for where they will be used that are set to appropriate stacks in the 'modules' section.  Don't use the 'stacks' variables directly.
+Define font stacks in the 'stacks' section, then create variables named for where they will be used that are set to appropriate stacks in the 'modules' section.  Don't use the 'stacks' variables directly.  Use the `getFont($name)` function to use fonts from `$fonts`.
 =====*/
 //==stacks
-$font-helvetica: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+$fontStacks: (
+	// helvetica: "1"
+	helvetica: ('Helvetica Neue', Arial, Helvetica, sans-serif)
+);
 
 //==modules
-$font-base: $font-helvetica;
-$font-heading: $font-helvetica;
+$fonts: (
+	base: getFontStack(helvetica),
+	heading: getFontStack(helvetica)
+);
 
 /*=====
 ==sizes
 
-Font sizes, named for where they will be used.
+Font sizes, named for where they will be used.  Use the `getFontSize($name)` function to get font sizes from `$fontSizes`.
 =====*/
-$fontsize-base: 16;
-$fontsize-h1: 2em;
-$fontsize-h2: 1.5em;
-$fontsize-h3: 1.17em;
-$fontsize-h4: 1.00em;
-$fontsize-h5: 0.83em;
-$fontsize-h6: 0.67em;
+$fontSizes: (
+	base: 16,
+	h1: 2em,
+	h2: 1.5em,
+	h3: 1.17em,
+	h4: 1.00em,
+	h5: 0.83em,
+	h6: 0.67em
+);
+
 $fontsize-root: 10; //-# Root font size for use by `remFallback` mixin. Based on setting font size to 62.5% on the 'html' element, making it 10px if user hasn't changed font size, but it will adjust with users font setting

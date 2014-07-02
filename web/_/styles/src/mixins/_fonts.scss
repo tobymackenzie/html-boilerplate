@@ -11,3 +11,39 @@ Set 'font-size' property in rem with pixel fallback.  Passed in value is pixel e
 		font-size: $sizeValue;
 	}
 }
+
+/*
+Function: getFont
+
+Convenience function for getting a font value from the '$fonts' map.
+*/
+
+$fonts: () !default;
+
+@function getFont($name){
+	@return map-get($fonts, $name);
+}
+
+/*
+Function: getFontSize
+
+Convenience function for getting a font size value from the '$fontSizes' map.
+*/
+
+$fontSizes: () !default;
+
+@function getFontSize($name){
+	@return map-get($fontSizes, $name);
+}
+
+/*
+Function: getFontStack
+
+Convenience function for getting a font stack value from the '$fontStacks' map.
+*/
+
+$fontStacks: () !default;
+
+@function getFontStack($name){
+	@return map-get($fontStacks, $name);
+}

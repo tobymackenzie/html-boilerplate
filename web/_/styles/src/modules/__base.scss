@@ -11,11 +11,11 @@
 
 //--fonts
 %font-base{
-	font-family: $font-base;
+	font-family: getFont(base);
 }
 %font-heading{
-	font-family: $font-heading;
+	font-family: getFont(heading);
 }
 %fontsize-base{
-	@include fontSize($fontsize-base);
+	@include fontSize(getFontSize(base));
 }
