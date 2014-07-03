@@ -19,17 +19,11 @@
 		<script><!--
 			//{# stick class name onto html denoting js support. -@<http://www.paulirish.com/2009/avoiding-the-fouc-v3/> #}
 			(function(H){H.className=H.className.replace(/\bua-no-js\b/,'ua-js')})(document.documentElement);
+			//{# tell js what environment we're in #}
+			window.ENV = '{{app.environment}}';
 		--></script>
 		{# shiv for older IE browsers to support HTML5 elements #}
 		<!--[if lt IE 9]><script src="/_/lib/html5shiv/dist/html5shiv-printshiv.min.js"></script><![endif]-->
-		{# require for script loading / dependency management #}
-		<script src="/_/scripts/lib/require.js"></script>
-		<script><!--
-			//{# tell js what environment we're in #}
-			window.ENV = '{{app.environment}}';
-			//{# load main script file #}
-			require(['/_/scripts/{{(app.environment is 'dev') ? 'src' : 'prod'}}/main.js']);
-		//--></script>
 	</head>
 	<body class="body" id="body">{# class and id for generically increasing CSS specifity #}
 		<div class="siteWrap">{# wrapper to hold normal page content and allow up to three levels of styling around it #}
@@ -77,5 +71,11 @@
 				</div>
 			</footer></div>
 		</div>
+		{# require for script loading / dependency management #}
+		<script src="/_/scripts/lib/require.js"></script>
+		<script><!--
+			//{# load main script file #}
+			require(['/_/scripts/{{(app.environment is 'dev') ? 'src' : 'prod'}}/main.js']);
+		//--></script>
 	</body>
 </html>
