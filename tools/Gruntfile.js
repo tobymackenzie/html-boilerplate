@@ -14,6 +14,7 @@ module.exports = function(__grunt){
 	__paths.assets = __paths.webRoot + '/_';
 	__paths.styles = __paths.assets + '/styles';
 	__paths.stylesSrc = __paths.styles + '/src';
+	__paths.stylesBuildsSrc = __paths.stylesSrc + '/builds';
 	__paths.stylesDev = __paths.styles + '/dev';
 	__paths.stylesProd = __paths.styles + '/prod';
 	__paths.scripts = __paths.assets + '/scripts';
@@ -43,7 +44,7 @@ module.exports = function(__grunt){
 			}
 			,dev: {
 				files: [{
-					cwd: __paths.stylesSrc
+					cwd: __paths.stylesBuildsSrc
 					,dest: __paths.stylesDev
 					,expand: true
 					,ext: '.css'
@@ -56,7 +57,7 @@ module.exports = function(__grunt){
 			}
 			,prod: {
 				files: [{
-					cwd: __paths.stylesSrc
+					cwd: __paths.stylesBuildsSrc
 					,dest: __paths.stylesProd
 					,expand: true
 					,ext: '.css'

@@ -18,6 +18,6 @@ An html project boilerplate not currently meant for direct use but more of for e
 	- _: site assets
 		- lib: where third party / non-site specific assets should go.  bower will put stuff here
 		- scripts/src: where site require modules should go.  main.js contains the require config and the main require call that will load all other modules
-		- styles/src: where site scss files will go.  main.scss loads all other scss files as partials
+		- styles/src: where site scss files will go.  builds/main.scss loads all other scss files as partials.  Can put any other builds here, such as an IE specific build.
 		- views: will contain view files for the site.  has an example site skeleton and a json version to be used when subsequent pages are loaded via ajax
 	- htaccess: apache server configuration
