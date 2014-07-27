@@ -4,7 +4,7 @@ Simplifies defining media queries for most cases.  Pass a number to get "@media 
 
 */
 $default-mqDevice: 'screen' !default; //-# default device for `mq` mixin when none are specified
-$default-mqFeature: 'max-width' !default; //-# default 'feature' for `mq` mixin when none are specified
+$default-mqFeature: 'min-width' !default; //-# default 'feature' for `mq` mixin when none are specified
 $bypassMQ: false !default; //-# whether or not to bypass media queries altogether, for targeting desktop browser that do not support them.
 
 @mixin mq($queryOrSkipBypassCheck, $query: false){
