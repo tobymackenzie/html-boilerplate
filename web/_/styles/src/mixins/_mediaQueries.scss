@@ -1,22 +1,34 @@
 /*
 Mixin: mq
-Simplifies defining media queries for most cases.
+Simplifies defining media queries for most cases.  Pass a number to get "@media screen and (min-width: #{number}em)" (by default).  Complex queries must be passed as strings. Allows bypassing media queries when setting $bypassMQ to true and either passing in a number or passing the boolean 'true' as a first parameter.
 
 */
 $default-mqDevice: 'screen' !default; //-# default device for `mq` mixin when none are specified
 $default-mqFeature: 'max-width' !default; //-# default 'feature' for `mq` mixin when none are specified
-@mixin mq($query){
-	//--if passed a number, turn it into a default query
-	@if type-of($query) == 'number'{
-		$number: 0;
-		@if unitless($query){
-			$number: #{$query}em; //-# use em units if none are provided
-		}@else{
-			$number: $query;
-		}
-		$query: $default-mqDevice + " and " + "(" + $default-mqFeature + ":" + $number + ")";
+$bypassMQ: false !default; //-# whether or not to bypass media queries altogether, for targeting desktop browser that do not support them.
+
+@mixin mq($queryOrSkipBypassCheck, $query: false){
+	$skipBypassCheck: false;
+	@if type-of($queryOrSkipBypassCheck) != 'bool'{
+		$query: $queryOrSkipBypassCheck;
+	}@else{
+		$skipBypassCheck: $queryOrSkipBypassCheck;
 	}
-	@if $query{
-		@media #{$query}{ @content; }
+	@if $bypassMQ and ($skipBypassCheck or (type-of($query) == 'number' and str-index($default-mqDevice, 'screen'))){
+		@content;
+	}@else{
+		//--if passed a number, turn it into a default query
+		@if type-of($query) == 'number'{
+			$number: 0;
+			@if unitless($query){
+				$number: #{$query}em; //-# use em units if none are provided
+			}@else{
+				$number: $query;
+			}
+			$query: $default-mqDevice + " and " + "(" + $default-mqFeature + ":" + $number + ")";
+		}
+		@if $query{
+			@media #{$query}{ @content; }
+		}
 	}
 }
