@@ -1,0 +1,41 @@
+//-@ h5bp
+@include mq('print'){
+	*{
+		background: transparent !important;
+		color: #000000 !important;
+		box-shadow: none !important;
+		text-shadow: none !important;
+	}
+	a, a:visited{
+		text-decoration: underline;
+	}
+	a[href]{
+		&:after{
+			content: '](' attr(href) ')';
+		}
+		&:before{
+			content: '[';
+		}
+	}
+	a[href^='#'], a[href^='javascript:']{
+		&:before, &:after{
+			content: '';
+		}
+	}
+	blockquote, img, pre, tr{
+		page-break-inside: avoid;
+	}
+	h2, h3, p{
+		orphans: 3;
+		widows: 3;
+	}
+	h1, h2, h3{
+		page-break-after: avoid;
+	}
+	iframe, img, object{
+		max-width: 100% !important;
+	}
+	thead{
+		display: table-header-group; //-@ h5bp.com/t
+	}
+}
