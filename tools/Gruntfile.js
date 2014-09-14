@@ -81,13 +81,10 @@ module.exports = function(__grunt){
 			require: {
 				options: {
 					baseUrl: __paths.scriptsSrc
-					,include: 'main'
+					,include: ['../../../../tools/node_modules/almond/almond', 'main']
 					,mainConfigFile: __paths.scriptsSrc + '/main.js'
 					,optimize: 'uglify2'
 					,out: __paths.scriptsProd + '/main.js'
-					,paths: {
-						jquery: 'empty:'
-					}
 					,wrap: {
 						startFile: 'assets/scripts/wrap.start.js'
 						,endFile: 'assets/scripts/wrap.end.js'

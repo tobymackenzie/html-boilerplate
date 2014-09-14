@@ -35,10 +35,7 @@ require.config({
 	baseUrl: '/_/scripts/src'
 	,paths: {
 		base: '.'
-		,jquery: [ //-# use CDN jquery with fallback to local
-			'http://code.jquery.com/jquery-1.11.0.min.js'
-			,'../../lib/jquery.js'
-		]
+		,jquery: '../../lib/jquery/dist/jquery'
 		,lib: '../../lib'
 		,tmclasses: '../../lib/tmclasses/src'
 		,tmlib: '../../lib/tmlib'
