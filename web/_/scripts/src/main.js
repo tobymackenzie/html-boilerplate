@@ -46,6 +46,7 @@ require.config({
 //--run
 require([
 	//-# put all app dependencies here
+	'test'
 ], function(){
-	clog('loaded');
+	window.console.log('main.js loaded');
 });

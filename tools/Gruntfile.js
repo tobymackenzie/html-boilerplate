@@ -21,6 +21,9 @@ module.exports = function(__grunt){
 	__paths.scriptsSrc = __paths.scripts + '/src';
 	__paths.scriptsProd = __paths.scripts + '/prod';
 
+	//-# for test
+	__paths.views = __paths.assets + '/views';
+
 	//--grunt config
 	__grunt.initConfig({
 		autoprefixer: {
@@ -163,6 +166,74 @@ module.exports = function(__grunt){
 			'watch:css'
 			,'watch:js'
 		]
+
+		//-# for test
+		,'test:build': [
+			'build:prod'
+			,'test:views'
+		]
+		,'test:views': function(){
+			var fs = require('fs');
+			var swig = require('swig');
+			var _data = {
+				app: {
+					devName: 'Toby Mackenzie'
+					,devUrl: 'http://www.tobymackenzie.com'
+					,devYears: '2014'
+					,environment: 'dev'
+				}
+				,page: {
+					aside: 'Sit amet lorem nonummy.'
+					,charset: 'utf-8'
+					,content: 'Lorem ipsum dolor sit amet.  Nonummy.  Nonummy nonummy nonummy.'
+					,description: 'This is a test'
+					,keywords: 'test,html,boilerplate'
+					,lang: 'en'
+					,name: 'test'
+					,styles: undefined
+					,title: 'Test'
+				}
+				,site: {
+					isResponsive: true
+					,name: 'Test'
+					,nav: [
+						{
+							name: 'Dev'
+							,subNav: [
+								{
+									name: 'html'
+									,url: 'index.dev.html'
+								}
+								,{
+									name: 'json'
+									,url: 'index.dev.json'
+								}
+							]
+						}
+						,{
+							name: 'Prod'
+							,subNav: [
+								{
+									name: 'html'
+									,url: 'index.html'
+								}
+								,{
+									name: 'json'
+									,url: 'index.json'
+								}
+							]
+						}
+						,
+					]
+					,title: 'Test Site'
+				}
+			};
+			fs.writeFileSync(__paths.webRoot + '/index.dev.html', swig.renderFile(__paths.views + '/skeletons/site.html.twig', _data));
+			fs.writeFileSync(__paths.webRoot + '/index.dev.json', swig.renderFile(__paths.views + '/skeletons/site.json.twig', _data));
+			_data.app.environment = 'prod';
+			fs.writeFileSync(__paths.webRoot + '/index.html', swig.renderFile(__paths.views + '/skeletons/site.html.twig', _data));
+			fs.writeFileSync(__paths.webRoot + '/index.json', swig.renderFile(__paths.views + '/skeletons/site.json.twig', _data));
+		}
 	};
 	//---loop through all tasks, registering each
 	var _item;
