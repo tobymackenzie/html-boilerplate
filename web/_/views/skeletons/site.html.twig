@@ -1,40 +1,39 @@
 <!DOCTYPE html>
-<html id="page-{{page.name}}" lang="{{page.lang}}" class="html page-{{page.name}} ua-no-js">{#
-	'html' class for generically increasing css specifity.
-	'page-' for page specific styling.
+<html class="doc doc-{{doc.name}} ua-no-js" id="doc-{{doc.name}}" lang="{{doc.lang}}">{#
+	'doc' class for generically increasing css specifity.
+	'doc-' for page specific styling.
 	'ua-no-js' for styling for user agents that don't have JavaScript.  Will be replaced with 'ua-js' if user agents supports JavaScript
 #}
 	<head>
-		<meta charset="{{page.charset}}" />
+		<meta charset="{{doc.charset}}" />
 
-		<title>{{(page.title) ? page.title + ' - ' : ''}} - {{site.title}}</title>
+		<title>{{(doc.title) ? doc.title + ' - ' : ''}}{{site.title}}</title>
 
-		{% if page.description %}<meta content="{{page.description}}" name="description" />{% endif %}
-		{% if page.keywords %}<meta content="{{page.keywords}}" name="keywords" />{% endif %}
+		{% if doc.description %}<meta content="{{doc.description}}" name="description" />{% endif %}
+		{% if doc.keywords %}<meta content="{{doc.keywords}}" name="keywords" />{% endif %}
 		{% if site.isResponsive %}<meta content="initial-scale=1,width=device-width" name="viewport" />{% endif %}
 
-		{{page.styles}}
 		{# Target only IE 8 with non-media query style sheet.  That will be the only old IE we test #}
 		<!--[if !IE 8]><!--><link href="/_/styles/{{app.environment}}/main.css" rel="stylesheet" /><!--<![endif]-->
 		<!--[if IE 8]><link href="/_/styles/{{app.environment}}/nomq-desktop.css" rel="stylesheet" /><![endif]-->
 
 		<script><!--
-			//{# stick class name onto html denoting js support. -@<http://www.paulirish.com/2009/avoiding-the-fouc-v3/> #}
+			/*{# stick class name onto html denoting js support. -@<http://www.paulirish.com/2009/avoiding-the-fouc-v3/> #}*/
 			(function(H){H.className=H.className.replace(/\bua-no-js\b/,'ua-js')})(document.documentElement);
-			//{# tell js what environment we're in #}
+			/*{# tell js what environment we're in #}*/
 			window.ENV = '{{app.environment}}';
 		--></script>
 		{# shiv for older IE browsers to support HTML5 elements #}
 		<!--[if lt IE 9]><script src="/_/lib/html5shiv/dist/html5shiv-printshiv.min.js"></script><![endif]-->
 	</head>
-	<body class="body" id="body">{# class and id for generically increasing CSS specifity #}
-		<div class="siteWrap">{# wrapper to hold normal page content and allow up to three levels of styling around it #}
-			<div class="siteHeaderWrap"><header class="siteHeader" role="banner">{# wrap some block level HTML5 elements in a div to ensure blockedness in old browsers #}{# have ARIA roles to support older screenreaders #}
-				<div class="siteJumpActions"><a class="jumpAction" href="#siteContent">Jump to main content</a></div>{# skip link #}
-				<div class="siteLogo">{% if page.name != 'home' %}<a class="siteLogoAction" href="/">{% endif %}{{site.name}}{% if page.name != 'home' %}</a>{% endif %}</div>{# logo is link on non-home pages #}
-				<div class="siteNavWrap"><nav class="siteNav" role="navigation">
+	<body id="body">{# class and id for generically increasing CSS specifity #}
+		<div class="docBody">{# wrapper to hold normal page content and allow up to three levels of styling around it #}
+			<div class="docHeaderWrap"><header class="docHeader" role="banner">{# wrap some block level HTML5 elements in a div to ensure blockedness in old browsers #}{# have ARIA roles to support older screenreaders #}
+				<div class="docJumpActions"><a class="jumpAction" href="#docContent">Jump to main content</a></div>{# skip link #}
+				<div class="docLogo">{% if doc.name != 'home' %}<a class="docLogoAction" href="/">{% endif %}{{site.name}}{% if doc.name != 'home' %}</a>{% endif %}</div>{# logo is link on non-home pages #}
+				<div class="docNavWrap"><nav class="docNav" role="navigation">
 					<h2 class="sro">Site Navigation</h2>
-					<ul class="siteNavList navList l-1">
+					<ul class="docNavList navList l-1">
 {% for item in site.nav %}
 						<li class="navItem l-1">
 							<a class="navAction l-1" href="{{item.url}}">{{item.name}}</a>
@@ -54,22 +53,22 @@
 					</ul>
 				</nav></div>
 			</header></div>
-			<div class="siteMainWrap">
-				<div class="siteContentWrap"><main id="siteContent" class="siteContent" role="main">
-					<h1>{{page.name}}</h1>
-					{{page.content}}
+			<div class="docContent">
+				<div id="docMain" class="docMainWrap"><main class="docMain" role="main">
+					<h1>{{doc.name}}</h1>
+					{{doc.content}}
 				</main></div>
-				<div class="siteAsideWrap"><aside class="siteAside" role="complementary">
+				<div class="docAsideWrap"><aside class="docAside" role="complementary">
 					<h2 class="sro">Sidebar</h2>
-					{{page.aside}}
+					{{doc.aside}}
 				</aside></div>
 			</div>
-			<div class="siteFooterWrap"><footer class="siteFooter" role="contentinfo">
+			<div class="docFooterWrap"><footer class="docFooter" role="contentinfo">
 				<h2 class="sro">Footer</h2>
-				<div class="siteInfo">
+				<div class="docInfo">
 					<h3 class="sro">Site Info</h3>
-					<span class="siteCopyright">© {{app.devYears}} {{site.name}}.</span>
-					<span class="siteAuthors"><a class="siteAuthorAction" href="{{app.devUrl}}">Developed by {{app.devName}}</a>.</span>
+					<span class="docCopyright">© {{app.devYears}} {{site.name}}.</span>
+					<span class="docAuthors"><a class="docAuthorAction" href="{{app.devUrl}}">Developed by {{app.devName}}</a>.</span>
 				</div>
 			</footer></div>
 		</div>

@@ -182,7 +182,7 @@ module.exports = function(__grunt){
 					,devYears: '2014'
 					,environment: 'dev'
 				}
-				,page: {
+				,doc: {
 					aside: 'Sit amet lorem nonummy.'
 					,charset: 'utf-8'
 					,content: 'Lorem ipsum dolor sit amet.  Nonummy.  Nonummy nonummy nonummy.'
