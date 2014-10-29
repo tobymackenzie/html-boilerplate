@@ -7,7 +7,7 @@
 	<head>
 		<meta charset="{{doc.charset}}" />
 
-		<title>{{(doc.title) ? doc.title + ' - ' : ''}}{{site.title}}</title>
+		<title>{% if doc.title %}{{doc.title}} - {% endif %}{{site.title}}</title>
 
 		{% if doc.description %}<meta content="{{doc.description}}" name="description" />{% endif %}
 		{% if doc.keywords %}<meta content="{{doc.keywords}}" name="keywords" />{% endif %}
