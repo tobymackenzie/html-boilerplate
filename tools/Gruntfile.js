@@ -9,20 +9,24 @@ module.exports = function(__grunt){
 	//--path configuration
 	var __paths = {
 		tools: '.'
-		,webRoot: '../web'
 	};
-	__paths.assets = __paths.webRoot + '/_';
-	__paths.styles = __paths.assets + '/styles';
-	__paths.stylesSrc = __paths.styles + '/src';
+	__paths.src = __paths.tools + '/../src';
+	__paths.lib = __paths.src + '/lib';
+	__paths.webRoot = __paths.tools + '/../web';
+	__paths.assets = __paths.src + '/assets';
+	__paths.assetsTarget = __paths.webRoot + '/_';
+	__paths.stylesSrc = __paths.assets + '/styles';
 	__paths.stylesBuildsSrc = __paths.stylesSrc + '/builds';
-	__paths.stylesDev = __paths.styles + '/dev';
-	__paths.stylesProd = __paths.styles + '/prod';
-	__paths.scripts = __paths.assets + '/scripts';
-	__paths.scriptsSrc = __paths.scripts + '/src';
-	__paths.scriptsProd = __paths.scripts + '/prod';
+	__paths.stylesTarget = __paths.assetsTarget + '/styles';
+	__paths.stylesDev = __paths.stylesTarget + '/dev';
+	__paths.stylesProd = __paths.stylesTarget + '/prod';
+	__paths.scriptsTarget = __paths.assetsTarget + '/scripts';
+	__paths.scriptsSrc = __paths.assets + '/scripts';
+	__paths.scriptsDev = __paths.scriptsTarget + '/dev';
+	__paths.scriptsProd = __paths.scriptsTarget + '/prod';
 
 	//-# for test
-	__paths.views = __paths.assets + '/views';
+	__paths.views = __paths.src + '/views';
 
 	//--grunt config
 	__grunt.initConfig({
@@ -71,6 +75,21 @@ module.exports = function(__grunt){
 				}
 			}
 		}
+		,symlink: {
+			options: {
+				overwrite: true
+			}
+			,devJS: {
+				dest: __paths.scriptsDev
+				,overwrite: true
+				,src: __paths.scriptsSrc
+			}
+			,libDev: {
+				dest: __paths.assetsTarget + '/lib'
+				,overwrite: true
+				,src: __paths.lib
+			}
+		}
 		,jshint: {
 			options: {
 				jshintrc: '../.jshintrc'
@@ -84,7 +103,7 @@ module.exports = function(__grunt){
 			require: {
 				options: {
 					baseUrl: __paths.scriptsSrc
-					,include: ['../../../../tools/node_modules/almond/almond', 'main']
+					,include: ['../../../tools/node_modules/almond/almond', 'main']
 					,mainConfigFile: __paths.scriptsSrc + '/main.js'
 					,optimize: 'uglify2'
 					,out: __paths.scriptsProd + '/main.js'
@@ -148,8 +167,16 @@ module.exports = function(__grunt){
 			'sass:prod'
 			,'autoprefixer:prod'
 		]
+		,'build:dev': [
+			'build:css:dev'
+			,'build:js:dev'
+		]
 		,'build:js': [
 			'requirejs:require'
+		]
+		,'build:js:dev': [
+			'symlink:devJS'
+			,'symlink:libDev'
 		]
 		,'build:js:prod': [
 			'jshint'
@@ -169,8 +196,9 @@ module.exports = function(__grunt){
 
 		//-# for test
 		,'test:build': [
-			'build:prod'
-			,'test:views'
+			'test:views'
+			,'build:dev'
+			,'build:prod'
 		]
 		,'test:views': function(){
 			var fs = require('fs');

@@ -32,7 +32,7 @@ var clog = (ENV === 'dev')
 
 //--config
 require.config({
-	baseUrl: '/_/scripts/src'
+	baseUrl: '/_/scripts/dev'
 	,paths: {
 		base: '.'
 		,jquery: '../../lib/jquery/dist/jquery'
