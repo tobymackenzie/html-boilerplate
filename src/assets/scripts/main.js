@@ -30,19 +30,6 @@ var clog = (ENV === 'dev')
 	: noop
 ;
 
-//--config
-require.config({
-	baseUrl: '/_/scripts/dev'
-	,paths: {
-		base: '.'
-		,jquery: '../../lib/jquery/dist/jquery'
-		,lib: '../../lib'
-		,tmclasses: '../../lib/tmclasses/src'
-		,tmlib: '../../lib/tmlib'
-	}
-	// ,shim: {}
-});
-
 //--run
 require([
 	//-# put all app dependencies here

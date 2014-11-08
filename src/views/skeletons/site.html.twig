@@ -74,6 +74,9 @@
 		</div>
 {% if app.environment == 'dev' %}
 		{# require for script loading / dependency management #}
+		<script><!--
+		{% include '../../assets/scripts/config/main.js' %}
+		--></script>
 		<script async src="/_/lib/requirejs/require.js" data-main="/_/scripts/dev/main.js"></script>
 {% else %}
 		<script async src="/_/scripts/prod/main.js"></script>
