@@ -104,8 +104,8 @@ module.exports = function(__grunt){
 				options: {
 					baseUrl: __paths.scriptsSrc
 					,include: ['../../../tools/node_modules/almond/almond', 'main']
-					,mainConfigFile: __paths.scriptsSrc + '/main.js'
 					,optimize: 'uglify2'
+					,mainConfigFile: __paths.scriptsSrc + '/config/main.js'
 					,out: __paths.scriptsProd + '/main.js'
 					,wrap: {
 						startFile: 'assets/scripts/wrap.start.js'
