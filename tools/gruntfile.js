@@ -103,8 +103,8 @@ module.exports = function(__grunt){
 			require: {
 				options: {
 					baseUrl: __paths.scriptsSrc
-					,include: ['../../../tools/node_modules/almond/almond', 'main']
 					,optimize: 'uglify2'
+					,include: ['../../../tools/node_modules/almond/almond', 'builds/main']
 					,mainConfigFile: __paths.scriptsSrc + '/config/main.js'
 					,out: __paths.scriptsProd + '/main.js'
 					,wrap: {
