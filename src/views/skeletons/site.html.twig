@@ -30,7 +30,7 @@
 		<div class="docBody">{# wrapper to hold normal page content and allow up to three levels of styling around it #}
 			<div class="docHeaderWrap"><header class="docHeader" role="banner">{# wrap some block level HTML5 elements in a div to ensure blockedness in old browsers #}{# have ARIA roles to support older screenreaders #}
 				<div class="docJumpActions"><a class="jumpAction" href="#docContent">Jump to main content</a></div>{# skip link #}
-				<div class="docLogo">{% if doc.name != 'home' %}<a class="docLogoAction" href="/">{% endif %}{{site.name}}{% if doc.name != 'home' %}</a>{% endif %}</div>{# logo is link on non-home pages #}
+				<div class="docLogo">{% if doc.name != 'home' %}<a class="docLogoAction" href="/" rel="home">{% endif %}{{site.name}}{% if doc.name != 'home' %}</a>{% endif %}</div>{# logo is link on non-home pages #}
 				<div class="docNavWrap"><nav class="docNav" role="navigation">
 					<h2 class="sro">Site Navigation</h2>
 					<ul class="docNavList navList l-1">
