@@ -122,7 +122,7 @@ module.exports = function(__grunt){
 			}
 			,js: {
 				files: __paths.scriptsSrc + '/**/*.js'
-				,tasks: ['jshint', 'build:js']
+				,tasks: ['lint', 'build:js']
 			}
 			,prod: {
 				files: [
@@ -179,14 +179,14 @@ module.exports = function(__grunt){
 			,'symlink:libDev'
 		]
 		,'build:js:prod': [
-			'jshint'
+			'lint'
 			,'build:js'
 		]
 		,'build:prod': [
 			'build:css:prod'
 			,'build:js:prod'
 		]
-		,'hint': [
+		,'lint': [
 			'jshint'
 		]
 		,'watch:dev': [
