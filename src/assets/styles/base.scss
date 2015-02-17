@@ -21,6 +21,18 @@ a{
 		color: getColor(linkFocus);
 	}
 }
+b, strong{
+	//-# only really necessary if using @font-face with a bold variant
+	@extend %font-bold;
+}
+b em, b i, em b, em strong, i b, i strong, strong em, strong i{
+	//-# only really necessary if using @font-face with a bold italic variant and having these combinations of elements.  Uncomment if desired.
+	//-! @extend %font-boldItalic;
+}
+em, i{
+	//-# only really necessary if using @font-face with an italic variant
+	@extend %font-italic;
+}
 h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6{
 	@extend %block;
 	@extend %font-heading;
@@ -28,6 +40,10 @@ h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6{
 
 	a{
 		color: inherit;
+	}
+	em, i{
+		//-# only really necessary if using @font-face with a bold italic variant and having these combinations of elements.  Uncomment if desired.
+		//-! @extend %font-boldItalic;
 	}
 }
 h1,.h1{

@@ -1,5 +1,4 @@
-//==extendable modules
-//--blocks
+//==blocks
 %block{
 	@include remFallback(margin, 0 0 15);
 	padding: 0;
@@ -9,13 +8,55 @@
 	max-width: 100%; //-# make elements responsive, will scale down with container
 }
 
-//--fonts
-%font-base{
+//==fonts
+//--base
+@mixin font-base{
 	font-family: getFont(base);
+	font-weight: 400;
+	font-style: none;
 }
-%font-heading{
-	font-family: getFont(heading);
+%font-base{
+	@include font-base();
 }
 %fontsize-base{
 	@include fontSize(getFontSize(base));
+}
+
+//--bold
+@mixin font-bold{
+	@include font-base();
+	//-! font-family: getFont(bold);
+	font-weight: 700;
+}
+%font-bold{
+	@include font-bold();
+}
+
+//--italic
+@mixin font-italic{
+	@include font-base();
+	//-! font-family: getFont(italic);
+	font-style: italic;
+}
+%font-italic{
+	@include font-italic();
+}
+
+//--bold italic
+@mixin font-boldItalic{
+	@include font-bold();
+	@include font-italic();
+	//-! font-family: getFont(boldItalic);
+}
+%font-boldItalic{
+	@include font-boldItalic();
+}
+
+//--heading
+@mixin font-heading{
+	@extend %font-bold;
+	//-! font-family: getFont(heading);
+}
+%font-heading{
+	@include font-heading();
 }

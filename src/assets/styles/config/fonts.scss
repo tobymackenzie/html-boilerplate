@@ -5,14 +5,17 @@ Define font stacks in the 'stacks' section, then create variables named for wher
 =====*/
 //==stacks
 $fontStacks: (
-	// helvetica: "1"
+	//-! helvetica: "1"
 	helvetica: ('Helvetica Neue', Arial, Helvetica, sans-serif)
 );
 
 //==modules
 $fonts: (
 	base: getFontStack(helvetica),
-	heading: getFontStack(helvetica)
+	//-! bold: getFontStack(helvetica), //-# if enabled, must enable in 'modules/_base'
+	//-! boldItalic: getFontStack(helvetica), //-# if enabled, must enable in 'modules/_base'.  Should also uncomment lines extending %font-boldItalic in 'base'.
+	//-! heading: getFontStack(helvetica), //-# if enabled, must enable in 'modules/_base'
+	//-! italic: getFontStack(helvetica) //-# if enabled, must enable in 'modules/_base'
 );
 
 /*=====
