@@ -49,6 +49,9 @@ module.exports = function(__grunt){
 				,src: __paths.stylesProd + '/**/*.css'
 			}
 		}
+		,clean: {
+			web: [__paths.webRoot]
+		}
 		,sass: {
 			options: {
 				require: ['sass-css-importer', 'sass-globbing']
