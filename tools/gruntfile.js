@@ -8,22 +8,27 @@ module.exports = function(__grunt){
 
 	//--path configuration
 	var __paths = {
-		tools: '.'
+		project: '..'
+		,tools: '.'
 	};
-	__paths.src = __paths.tools + '/../src';
+	//--src
+	__paths.src = __paths.project + '/src';
 	__paths.lib = __paths.src + '/lib';
-	__paths.webRoot = __paths.tools + '/../web';
+	__paths.webSrc = __paths.src + '/web';
+	//---assets
 	__paths.assets = __paths.src + '/assets';
-	__paths.assetsTarget = __paths.webRoot + '/_';
 	__paths.stylesSrc = __paths.assets + '/styles';
 	__paths.stylesBuildsSrc = __paths.stylesSrc + '/builds';
+	__paths.scriptsSrc = __paths.assets + '/scripts';
+	//--web
+	__paths.webRoot = __paths.project + '/web';
+	__paths.assetsTarget = __paths.webRoot + '/_';
+	__paths.scriptsTarget = __paths.assetsTarget + '/scripts';
+	__paths.scriptsDev = __paths.scriptsTarget + '/dev';
+	__paths.scriptsProd = __paths.scriptsTarget + '/prod';
 	__paths.stylesTarget = __paths.assetsTarget + '/styles';
 	__paths.stylesDev = __paths.stylesTarget + '/dev';
 	__paths.stylesProd = __paths.stylesTarget + '/prod';
-	__paths.scriptsTarget = __paths.assetsTarget + '/scripts';
-	__paths.scriptsSrc = __paths.assets + '/scripts';
-	__paths.scriptsDev = __paths.scriptsTarget + '/dev';
-	__paths.scriptsProd = __paths.scriptsTarget + '/prod';
 
 	//-# for test
 	__paths.views = __paths.src + '/views';
@@ -88,6 +93,14 @@ module.exports = function(__grunt){
 				dest: __paths.assetsTarget + '/lib'
 				,overwrite: true
 				,src: __paths.lib
+			}
+			,web: {
+				cwd: __paths.webSrc
+				,dest: __paths.webRoot
+				,dot: true
+				,expand: true
+				,overwrite: true
+				,src: '**/*'
 			}
 		}
 		,jshint: {
@@ -160,11 +173,13 @@ module.exports = function(__grunt){
 			'build:css:dev'
 		]
 		,'build:css:dev': [
-			'sass:dev'
+			'build:web'
+			,'sass:dev'
 			,'autoprefixer:dev'
 		]
 		,'build:css:prod': [
-			'sass:prod'
+			'build:web'
+			,'sass:prod'
 			,'autoprefixer:prod'
 		]
 		,'build:dev': [
@@ -172,10 +187,12 @@ module.exports = function(__grunt){
 			,'build:js:dev'
 		]
 		,'build:js': [
-			'requirejs:require'
+			'build:web'
+			,'requirejs:require'
 		]
 		,'build:js:dev': [
-			'symlink:devJS'
+			'build:web'
+			,'symlink:devJS'
 			,'symlink:libDev'
 		]
 		,'build:js:prod': [
@@ -185,6 +202,9 @@ module.exports = function(__grunt){
 		,'build:prod': [
 			'build:css:prod'
 			,'build:js:prod'
+		]
+		,'build:web': [
+			'symlink:web'
 		]
 		,'lint': [
 			'jshint'
@@ -196,9 +216,9 @@ module.exports = function(__grunt){
 
 		//-# for test
 		,'test:build': [
-			'test:views'
-			,'build:dev'
+			'build:dev'
 			,'build:prod'
+			,'test:views'
 		]
 		,'test:views': function(){
 			var fs = require('fs');
