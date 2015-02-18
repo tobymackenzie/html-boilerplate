@@ -3,7 +3,7 @@
 *.swp
 .DS_Store
 /src/lib
-/tools/.sass-cache
-/tools/Gemfile.lock
-/tools/node_modules
+/.sass-cache
+/Gemfile.lock
+/node_modules
 /web

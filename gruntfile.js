@@ -8,11 +8,11 @@ module.exports = function(__grunt){
 
 	//--path configuration
 	var __paths = {
-		project: '..'
-		,tools: '.'
+		project: '.'
 	};
 	//--src
 	__paths.src = __paths.project + '/src';
+	__paths.build = __paths.src + '/build';
 	__paths.lib = __paths.src + '/lib';
 	__paths.webSrc = __paths.src + '/web';
 	//---assets
@@ -108,7 +108,7 @@ module.exports = function(__grunt){
 		}
 		,jshint: {
 			options: {
-				jshintrc: '../.jshintrc'
+				jshintrc: './.jshintrc'
 			}
 			,all: [
 				'Gruntfile.js'
@@ -120,12 +120,12 @@ module.exports = function(__grunt){
 				options: {
 					baseUrl: __paths.scriptsSrc
 					,optimize: 'uglify2'
-					,include: ['../../../tools/node_modules/almond/almond', 'builds/main']
+					,include: ['../../../node_modules/almond/almond', 'builds/main']
 					,mainConfigFile: __paths.scriptsSrc + '/config/main.js'
 					,out: __paths.scriptsProd + '/main.js'
 					,wrap: {
-						startFile: 'assets/scripts/wrap.start.js'
-						,endFile: 'assets/scripts/wrap.end.js'
+						startFile: __paths.build + '/scripts/wrap.start.js'
+						,endFile: __paths.build + '/scripts/wrap.end.js'
 					}
 					,wrapShim: true
 				}

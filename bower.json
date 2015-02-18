@@ -8,5 +8,5 @@
 		,"tmclasses": "https://github.com/tobymackenzie/js-tmclasses.git"
 		,"tmlib": "https://github.com/tobymackenzie/Web-ClientBehavior.git"
 	}
-	,"directory": "../web/_/lib"
+	,"directory": "./web/_/lib"
 }
