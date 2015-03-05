@@ -1,4 +1,5 @@
 //-@ h5bp
+//-@ http://www.smashingmagazine.com/2011/11/24/how-to-set-up-a-print-style-sheet/
 @include mq('print'){
 	*{
 		background: transparent !important;
@@ -13,9 +14,12 @@
 		&[href]{
 			&:after{
 				content: '](' attr(href) ')';
+				text-decoration: none;
+				word-wrap: break-word;
 			}
 			&:before{
 				content: '[';
+				text-decoration: none;
 			}
 		}
 		&[href^='#'], &[href^='javascript:']{
