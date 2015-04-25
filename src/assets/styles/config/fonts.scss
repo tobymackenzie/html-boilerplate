@@ -11,11 +11,11 @@ $fontStacks: (
 
 //==modules
 $fonts: (
-	base: getFontStack(helvetica),
-	//-! bold: getFontStack(helvetica), //-# if enabled, must enable in 'modules/_base'
-	//-! boldItalic: getFontStack(helvetica), //-# if enabled, must enable in 'modules/_base'.  Should also uncomment lines extending %font-boldItalic in 'base'.
-	//-! heading: getFontStack(helvetica), //-# if enabled, must enable in 'modules/_base'
-	//-! italic: getFontStack(helvetica) //-# if enabled, must enable in 'modules/_base'
+	base: map-get($fontStacks, helvetica),
+	//-! bold: map-get($fontStacks, helvetica), //-# if enabled, must enable in 'modules/_base'
+	//-! boldItalic: map-get($fontStacks, helvetica), //-# if enabled, must enable in 'modules/_base'.  Should also uncomment lines extending %font-boldItalic in 'base'.
+	//-! heading: map-get($fontStacks, helvetica), //-# if enabled, must enable in 'modules/_base'
+	//-! italic: map-get($fontStacks, helvetica) //-# if enabled, must enable in 'modules/_base'
 );
 
 /*=====
