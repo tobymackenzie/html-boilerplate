@@ -64,19 +64,18 @@ h5,.h5{
 h6,.h6{
 	@include fontSize(getFontSize(h6));
 }
-iframe, object{
-	@extend %responsive;
-	border: none;
+iframe, img, object{
+	border: 0; //-# ensure images in links don't get borders in some browsers.  ensure iframes don't get borders
+	max-width: 100%; //-# make elements responsive, will scale down with container
 }
 img{
-	@extend %responsive;
-	border: 0; //-# ensure images in links don't get borders in some browsers
+	height: auto; width: auto; //-# ensure aspect ratio is preserved when resizing
 }
 input, select, td, textarea, th{
 	font-size: 1em;
 }
 input, select, textarea{
-	@extend %responsive;
+	max-width: 100%;
 }
 p{
 	@extend %block;
