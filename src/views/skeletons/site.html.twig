@@ -24,7 +24,7 @@
 			window.ENV = '{{app.environment}}';
 		--></script>
 		{# shiv for older IE browsers to support HTML5 elements #}
-		<!--[if lt IE 9]><script src="/_/lib/html5shiv/dist/html5shiv-printshiv.min.js"></script><![endif]-->
+		<!--[if lte IE 9]><script src="/_/lib/html5shiv/dist/html5shiv-printshiv.min.js"></script><![endif]-->
 	</head>
 	<body id="body">{# class and id for generically increasing CSS specifity #}
 		<div class="docBody">{# wrapper to hold normal page content and allow up to three levels of styling around it #}
