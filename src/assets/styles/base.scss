@@ -70,6 +70,7 @@ iframe, img, object{
 }
 img{
 	height: auto; width: auto; //-# ensure aspect ratio is preserved when resizing
+	max-height: 100vh; //-# make sure image doesn't get bigger than viewport. -@ [snookca](https://twitter.com/snookca/status/634486812803792897)
 }
 input, select, td, textarea, th{
 	font-size: 1em;
