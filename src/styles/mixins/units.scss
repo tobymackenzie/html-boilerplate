@@ -1,10 +1,11 @@
 /*
-Variable: fontsize-root
+Variable: fontSizes.root
 'px' font size on root (html) element (with units removed).  Browser default is 16px.  Used to determine sizes for remFallback function.
 
 -@ based on http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
 */
-$fontsize-root: 16 !default;
+$fontSizes: () !default;
+$fontSizes: map-merge((root: 16), $fontSizes);
 
 /*
 Mixin: remFallback
@@ -32,15 +33,15 @@ Output a property with pixel values for non 'rem' supporting browsers followed b
 		//--unitless numbers are added as if they are in pix
 		@if $unit == 'unitless' and $value != 0{
 			$px : append($px, $value + px);
-			$rem: append($rem, ($value / $fontsize-root + rem));
+			$rem: append($rem, ($value / map-get($fontSizes, root) + rem));
 		//--px or rem get added to their list and then converted to the other unit
 		}@else if $unit == 'px' or $unit == 'rem'{
 			$unitlessVal: stripUnit($value);
 			@if $unit == 'px'{
 				$px : append($px, $value);
-				$rem: append($rem, ($unitlessVal / $fontsize-root + rem));
+				$rem: append($rem, ($unitlessVal / map-get($fontSizes, root) + rem));
 			}@else if $unit == 'rem'{
-				$px : append($px,($unitlessVal * $fontsize-root + px));
+				$px : append($px,($unitlessVal * map-get($fontSizes, root) + px));
 				$rem: append($rem, $value);
 			}
 		//--all other units get appended directly

@@ -24,6 +24,7 @@ $fonts: (
 Font sizes, named for where they will be used.  Use the `getFontSize($name)` function to get font sizes from `$fontSizes`.
 =====*/
 $fontSizes: (
+	root: 14, //-# Root font size for use by `remFallback` mixin. Based on setting font size to 62.5% on the 'html' element, making it 10px if user hasn't changed font size, but it will adjust with users font setting
 	base: 16,
 	h1: 2em,
 	h2: 1.5em,
@@ -33,4 +34,3 @@ $fontSizes: (
 	h6: 0.67em
 );
 
-$fontsize-root: 10; //-# Root font size for use by `remFallback` mixin. Based on setting font size to 62.5% on the 'html' element, making it 10px if user hasn't changed font size, but it will adjust with users font setting
