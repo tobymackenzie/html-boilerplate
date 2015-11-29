@@ -1,5 +1,5 @@
 //==root styles
-body, td, th{
+body{
 	@extend %font-base;
 	@extend %fontsize-base;
 	color: getColor(baseText);
