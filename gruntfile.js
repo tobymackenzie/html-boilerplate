@@ -64,7 +64,7 @@ module.exports = function(__grunt){
 					,expand: true
 					,ext: '.css'
 					,extDot: 'last'
-					,src: ['**/*.scss']
+					,src: ['**/*.s{a,c}ss']
 				}]
 				,options: {
 					lineNumbers: true
@@ -78,7 +78,7 @@ module.exports = function(__grunt){
 					,expand: true
 					,ext: '.css'
 					,extDot: 'last'
-					,src: ['**/*.scss']
+					,src: ['**/*.s{a,c}ss']
 				}]
 				,options: {
 					style: 'compressed'
@@ -142,7 +142,7 @@ module.exports = function(__grunt){
 			css: {
 				files: [{
 					extDot: 'last'
-					,src: [__paths.stylesSrc + '/**/*.scss']
+					,src: [__paths.stylesSrc + '/**/*.s{a,c}ss']
 				}]
 				,tasks: ['build:css:dev']
 			}
