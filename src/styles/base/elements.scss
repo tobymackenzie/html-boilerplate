@@ -2,11 +2,11 @@
 body{
 	@extend %font-base;
 	@extend %fontsize-base;
-	color: getColor(baseText);
+	color: map-get($colors, baseText);
 	line-height: 1.45;
 }
 html{
-	background: getColor(baseBG);
+	background: map-get($colors, baseBG);
 	font-size: 62.5%; //-# sets document base font size to 10px with browser defaults, making one rem equal 10 px for easier rem math.  Will automatically scale with user configured default font size.
 }
 
@@ -15,10 +15,10 @@ html{
 	box-sizing: border-box;
 }
 a{
-	color: getColor(link);
+	color: map-get($colors, link);
 	margin: 0;
 	&:focus,&:hover{
-		color: getColor(linkFocus);
+		color: map-get($colors, linkFocus);
 	}
 }
 b, strong{
@@ -36,7 +36,7 @@ em, i{
 h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6{
 	@extend %block;
 	@extend %font-heading;
-	color: getColor(heading);
+	color: map-get($colors, heading);
 
 	a{
 		color: inherit;
@@ -47,22 +47,22 @@ h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6{
 	}
 }
 h1,.h1{
-	@include fontSize(getFontSize(h1));
+	@include fontSize(map-get($fontSizes, h1));
 }
 h2,.h2{
-	@include fontSize(getFontSize(h2));
+	@include fontSize(map-get($fontSizes, h2));
 }
 h3,.h3{
-	@include fontSize(getFontSize(h3));
+	@include fontSize(map-get($fontSizes, h3));
 }
 h4,.h4{
-	@include fontSize(getFontSize(h4));
+	@include fontSize(map-get($fontSizes, h4));
 }
 h5,.h5{
-	@include fontSize(getFontSize(h5));
+	@include fontSize(map-get($fontSizes, h5));
 }
 h6,.h6{
-	@include fontSize(getFontSize(h6));
+	@include fontSize(map-get($fontSizes, h6));
 }
 iframe, img, object{
 	border: 0; //-# ensure images in links don't get borders in some browsers.  ensure iframes don't get borders

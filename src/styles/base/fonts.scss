@@ -1,6 +1,6 @@
 //--base
 @mixin font-base{
-	font-family: getFont(base);
+	font-family: map-get($fontFamilies, base);
 	font-weight: 400;
 	font-style: none;
 }
@@ -8,13 +8,13 @@
 	@include font-base();
 }
 %fontsize-base{
-	@include fontSize(getFontSize(base));
+	@include fontSize(map-get($fontSizes, base));
 }
 
 //--bold
 @mixin font-bold{
 	@include font-base();
-	//-! font-family: getFont(bold);
+	//-! font-family: map-get($fontFamilies, bold);
 	font-weight: 700;
 }
 %font-bold{
@@ -24,7 +24,7 @@
 //--italic
 @mixin font-italic{
 	@include font-base();
-	//-! font-family: getFont(italic);
+	//-! font-family: map-get($fontFamilies, italic);
 	font-style: italic;
 }
 %font-italic{
@@ -35,7 +35,7 @@
 @mixin font-boldItalic{
 	@include font-bold();
 	@include font-italic();
-	//-! font-family: getFont(boldItalic);
+	//-! font-family: map-get($fontFamilies, boldItalic);
 }
 %font-boldItalic{
 	@include font-boldItalic();
@@ -44,7 +44,7 @@
 //--heading
 @mixin font-heading{
 	@extend %font-bold;
-	//-! font-family: getFont(heading);
+	//-! font-family: map-get($fontFamilies, heading);
 }
 %font-heading{
 	@include font-heading();

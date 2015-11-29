@@ -3,6 +3,3 @@ Function: getColor
 Convenience function for getting a color value from the '$colors' map.
 */
 $colors: () !default;
-@function getColor($name){
-	@return map-get($colors, $name);
-}
