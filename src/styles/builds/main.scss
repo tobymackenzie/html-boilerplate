@@ -45,7 +45,9 @@ These files generate actual styles.  They will have everything they need loaded 
 
 Lib files could also generate styles.  If there are concerns about specifity problems due to order, consider loading libs down here.
 =====*/
-@import '../base';
+@import '../base/breakpoints';
+@import '../base/elements';
+@import '../base/fonts';
 // @import '../modules/**/*';
 @import '../modules/_base';
 // @import '../skeleton/**/*';
