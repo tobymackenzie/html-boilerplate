@@ -14,28 +14,23 @@ $namedColors: (
 
 Colors that will be defined directly and used in other files.  Used for classes with color names, such as when a color name is selectable in a CMS that causes a color-name class to be used in generated content.
 */
-$directColors: (bigRed: #f00);
+$colors: map-merge($colors, (
+	bigRed: #f00
+));
 
 /*=====
 ==modules
 
 Colors named for what they will be styling.  These are to be used in other files.  Do not define colors directly here.
 =====*/
-$moduleColors: (
+$colors: map-merge($colors, (
 	baseBG: map-get($namedColors, white),
 	baseText: map-get($namedColors, black),
 	link: map-get($namedColors, defaultLink)
-);
-
-//--merge in colors derived from others
-$moduleColors: map-merge($moduleColors, (
-	heading: map-get($moduleColors, baseText),
-	linkFocus: map-get($moduleColors, link)
 ));
 
-/*=====
-==all
-
-The two 'public' color maps are merged for easy use.  Use the `getColor($name)` function for easy access to this map.
-=====*/
-$colors: map-merge($directColors, $moduleColors);
+//--merge in colors derived from others
+$colors: map-merge($colors, (
+	heading: map-get($colors, baseText),
+	linkFocus: map-get($colors, link)
+));

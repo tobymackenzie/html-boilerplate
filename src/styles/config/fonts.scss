@@ -1,30 +1,30 @@
 /*=====
 ==fonts
 
-Define font stacks in the 'stacks' section, then create variables named for where they will be used that are set to appropriate stacks in the 'modules' section.  Don't use the 'stacks' variables directly.  Use the `getFont($name)` function to use fonts from `$fonts`.
+Define font stacks in the '$namedFontFamilies' section, then create variables named for where they will be used that are set to appropriate stacks in the 'modules' section.  Don't use the '$namedFontFamilies' variables directly.
 =====*/
-//==stacks
-$fontStacks: (
+//==named families
+$namedFontFamilies: (
 	//-! helvetica: "1"
 	helvetica: ('Helvetica Neue', Arial, Helvetica, sans-serif)
 );
 
 //==modules
-$fonts: (
-	base: map-get($fontStacks, helvetica),
-	//-! bold: map-get($fontStacks, helvetica), //-# if enabled, must enable in 'modules/_base'
-	//-! boldItalic: map-get($fontStacks, helvetica), //-# if enabled, must enable in 'modules/_base'.  Should also uncomment lines extending %font-boldItalic in 'base'.
-	//-! heading: map-get($fontStacks, helvetica), //-# if enabled, must enable in 'modules/_base'
-	//-! italic: map-get($fontStacks, helvetica) //-# if enabled, must enable in 'modules/_base'
-);
+$fontFamilies: map-merge($fontFamilies, (
+	base: map-get($namedFontFamilies, helvetica),
+	//-! bold: map-get($namedFontFamilies, helvetica), //-# if enabled, must enable in 'base/fonts'
+	//-! boldItalic: map-get($namedFontFamilies, helvetica), //-# if enabled, must enable in 'base/fonts'.  Should also uncomment lines extending %font-boldItalic in 'base'.
+	//-! heading: map-get($namedFontFamilies, helvetica), //-# if enabled, must enable in 'base/fonts'
+	//-! italic: map-get($namedFontFamilies, helvetica) //-# if enabled, must enable in 'base/fonts'
+));
 
 /*=====
 ==sizes
 
 Font sizes, named for where they will be used.  Use the `getFontSize($name)` function to get font sizes from `$fontSizes`.
 =====*/
-$fontSizes: (
-	root: 14, //-# Root font size for use by `remFallback` mixin. Based on setting font size to 62.5% on the 'html' element, making it 10px if user hasn't changed font size, but it will adjust with users font setting
+$fontSizes: map-merge($fontSizes, (
+	root: 10, //-# Root font size for use by `remFallback` mixin. Based on setting font size to 62.5% on the 'html' element, making it 10px if user hasn't changed font size, but it will adjust with users font setting
 	base: 16,
 	h1: 2em,
 	h2: 1.5em,
@@ -32,5 +32,4 @@ $fontSizes: (
 	h4: 1.00em,
 	h5: 0.83em,
 	h6: 0.67em
-);
-
+));
