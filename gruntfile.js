@@ -16,7 +16,7 @@ module.exports = function(__grunt){
 	__paths.lib = __paths.src + '/lib';
 	__paths.webSrc = __paths.src + '/web';
 	//---assets
-	__paths.assets = __paths.src + '/assets';
+	__paths.assets = __paths.src;
 	__paths.stylesSrc = __paths.assets + '/styles';
 	__paths.stylesBuildsSrc = __paths.stylesSrc + '/builds';
 	__paths.scriptsSrc = __paths.assets + '/scripts';
@@ -97,6 +97,11 @@ module.exports = function(__grunt){
 				,overwrite: true
 				,src: __paths.lib
 			}
+			,libDevForRequire: {
+				dest: __paths.scriptsTarget + '/lib'
+				,overwrite: true
+				,src: __paths.lib
+			}
 			,web: {
 				cwd: __paths.webSrc
 				,dest: __paths.webRoot
@@ -120,7 +125,7 @@ module.exports = function(__grunt){
 				options: {
 					baseUrl: __paths.scriptsSrc
 					,optimize: 'uglify2'
-					,include: ['../../../node_modules/almond/almond', 'builds/main']
+					,include: ['../../node_modules/almond/almond', 'builds/main']
 					,mainConfigFile: __paths.scriptsSrc + '/config/main.js'
 					,out: __paths.scriptsProd + '/main.js'
 					,wrap: {
@@ -197,6 +202,7 @@ module.exports = function(__grunt){
 			'build:web'
 			,'symlink:devJS'
 			,'symlink:libDev'
+			,'symlink:libDevForRequire'
 		]
 		,'build:js:prod': [
 			'lint'
