@@ -19,7 +19,7 @@ Directory Structure
 	- build: assets used in the build process
 	- lib: where third party / non-site specific assets should go.  bower will put stuff here
 	- scripts: Where site require modules should go.  main.js contains the main require call that will load all other modules.  config/main.js contains the requirejs config.
-	- styles: where site scss files will go.  'builds/main.scss' loads all other scss files as partials.  Another build is 'nomq-desktop.scss' for old browsers that don't support media queries but should still get the full experience (IE 8 in this case).
+	- styles: where site scss files will go.  'builds/main.scss' loads all other scss files as partials.  Another build is 'main.nomq.scss' for old browsers that don't support media queries but should still get the full experience (IE 8 in this case).
 	- views: view files for the site.  contains an example site "skeleton" representing the basic HTML structure of and HTML document.  Also contains a json "skeleton" to be used when pages are loaded via ajax.
 - web: represents the web root.  CSS and JS will be built into here.  Would normally contain a back-end controller, but in this case, a grunt task will build the views into here.  A 'dev' and 'prod' setup of HTML, CSS, and JS are put into place.  The 'dev' setup is meant to make it easier to develop, while 'prod' is meant to be performance optimized.
 	- _: Location of site assets.  Built into here by grunt or symlinked when applicable.

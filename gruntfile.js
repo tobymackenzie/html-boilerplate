@@ -63,6 +63,7 @@ module.exports = function(__grunt){
 					,dest: __paths.stylesDev
 					,expand: true
 					,ext: '.css'
+					,extDot: 'last'
 					,src: ['**/*.scss']
 				}]
 				,options: {
@@ -76,6 +77,7 @@ module.exports = function(__grunt){
 					,dest: __paths.stylesProd
 					,expand: true
 					,ext: '.css'
+					,extDot: 'last'
 					,src: ['**/*.scss']
 				}]
 				,options: {
@@ -138,18 +140,27 @@ module.exports = function(__grunt){
 		}
 		,watch: {
 			css: {
-				files: __paths.stylesSrc + '/**/*.scss'
+				files: [{
+					extDot: 'last'
+					,src: [__paths.stylesSrc + '/**/*.scss']
+				}]
 				,tasks: ['build:css:dev']
 			}
 			,js: {
-				files: __paths.scriptsSrc + '/**/*.js'
+				files: [{
+					extDot: 'last'
+					,src: [__paths.scriptsSrc + '/**/*.js']
+				}]
 				,tasks: ['lint', 'build:js']
 			}
 			,prod: {
-				files: [
-					__paths.scriptsSrc
-					,__paths.stylesSrc
-				]
+				files: [{
+					extDot: 'last'
+					,src: [
+						__paths.scriptsSrc
+						,__paths.stylesSrc
+					]
+				}]
 				,tasks: [
 					'build:css:prod'
 					,'build:js:prod'
